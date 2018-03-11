@@ -58,7 +58,7 @@ $ hexo deploy
 2.随便找一个主题，进入主题的 GitHub 首页，比如我找的是 https://github.com/iissnan/hexo-theme-next
 3.复制它的 SSH 地址或 HTTPS 地址，假设地址为 git@github.com:iissnan/hexo-theme-next.git
 4.`$ cd themes`
-5.`git clone git@github.com:iissnan/hexo-theme-next.git`
+5.`$ git clone git@github.com:iissnan/hexo-theme-next.git`
 6.`$ cd ..`
 7.将 _config.yml 的第 75 行改为 theme: hexo-theme-next，保存
 8.`$ hexo generate`
