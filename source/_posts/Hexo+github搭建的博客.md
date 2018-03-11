@@ -1,0 +1,50 @@
+---
+title: 使用Hexo+github搭建的个人博客
+date: 2018-03-11 08:34:44
+tags:
+---
+#### Hexo博客的本地搭建
+1.搭建博客之前，必须已安装好Node.js（无脑安装且自带npm）和Git（Git Bash自带）
+2.使用npm完成Hexo的安装
+```
+$ npm install -g hexo-cli
+```
+3.Hexo安装完成后，执行下列命令，Hexo将会在指定文件夹中新建所需的文件
+```
+$ hexo init myBlog //创建myBlog文件夹，并初始化它
+$ cd myBlog //进入myBlog文件夹
+$ npm install //安装依赖(貌似可以省略，init myBlog时已安装了依赖)
+```
+4.启动server，即可在本地访问
+```
+$ hexo server
+```
+5.如何写博客
+```
+$ hexo new 博客开张.md //新建博客
+$ start source/_posts/博客开张.md //自动打开博客，可以使用md格式写博客啦！
+```
+6.至此，本地Hexo博客已经搭建完成了。
+#### Hexo博客部署至github
+0.在github账号上新建空仓库（create a new repository），仓库名repo为[你的用户名.github.io]
+1.打开根目录myBlog下的_config.yml文件，配置最后的deploy
+1.1把最后一行的type改成type: git
+1.2最后一行后面新增一行，左边与type对齐，加上一行```repo: 仓库地址```（仓库地址为：git@github.com:xxx/xxx.github.io.git）
+2.安装git部署插件
+```
+$ npm install hexo-deployer-git --save
+```
+3.将博客部署到服务器上（github）
+```
+$ hexo deploy
+```
+4.这样就可以用GitHub Pages打开博客了，至此Hexo博客部署至github完成了。
+
+##### 在上面一步部署的过程中，很有可能会报错，我遇到的原因可能是几种。
+1.本地与github没有建立通信。
+生成公私钥
+```
+$ ssh-keygen -t rsa -C "$your_email"
+```
+通过所提示的公私钥路径，把公钥的内容拷贝到github上（Settting--SSH and GPG key--New SSH key）
+能通信以后，还要把本地库推送到远程库上（远程库不是自己想要的，可删除```$ git remote remove origin```）
