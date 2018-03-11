@@ -29,7 +29,7 @@ $ start source/_posts/博客开张.md //自动打开博客，可以使用md格�
 0.在github账号上新建空仓库（create a new repository），仓库名repo为[你的用户名.github.io]
 1.打开根目录myBlog下的_config.yml文件，配置最后的deploy
 1.1把最后一行的type改成type: git
-1.2最后一行后面新增一行，左边与type对齐，加上一行```repo: 仓库地址```（仓库地址为：git@github.com:xxx/xxx.github.io.git）
+1.2最后一行后面新增一行，左边与type对齐，加上一行 [repo: 仓库地址] ,仓库地址为：git@github.com:xxx/xxx.github.io.git）
 2.安装git部署插件
 ```
 $ npm install hexo-deployer-git --save
@@ -38,13 +38,28 @@ $ npm install hexo-deployer-git --save
 ```
 $ hexo deploy
 ```
-4.这样就可以用GitHub Pages打开博客了，至此Hexo博客部署至github完成了。
-
-##### 在上面一步部署的过程中，很有可能会报错，我遇到的原因可能是几种。
-1.本地与github没有建立通信。
+4.这样就可以用GitHub Pages功能，打开博客了，至此Hexo博客部署至github完成了。
+###### 在上面第三步部署的过程中，很有可能会报错，下面是我遇到的原因。
+本地与github没有建立通信。
 生成公私钥
 ```
 $ ssh-keygen -t rsa -C "$your_email"
 ```
 通过所提示的公私钥路径，把公钥的内容拷贝到github上（Settting--SSH and GPG key--New SSH key）
-能通信以后，还要把本地库推送到远程库上（远程库不是自己想要的，可删除```$ git remote remove origin```）
+#### 第二篇博客
+```
+hexo new 第二篇博客
+start xxxx.md //xxx为第二篇博客的相对路径
+hexo generate //使用hexo生成静态文件
+hexo deploy
+```
+#### 换主题
+1.https://github.com/hexojs/hexo/wiki/Themes 上面有主题合集
+2.随便找一个主题，进入主题的 GitHub 首页，比如我找的是 https://github.com/iissnan/hexo-theme-next
+3.复制它的 SSH 地址或 HTTPS 地址，假设地址为 git@github.com:iissnan/hexo-theme-next.git
+4.cd themes
+5.git clone git@github.com:iissnan/hexo-theme-next.git
+6.cd ..
+7.将 _config.yml 的第 75 行改为 theme: hexo-theme-next，保存
+8.hexo generate
+9.hexo deploy
